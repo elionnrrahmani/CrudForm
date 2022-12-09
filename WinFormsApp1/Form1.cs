@@ -27,13 +27,13 @@ namespace WinFormsApp1
                 mySqlCmd.Parameters.AddWithValue("_Desciption", txtDescription.Text.Trim());
                 mySqlCmd.ExecuteNonQuery();
                 MessageBox.Show("Succesfully saved!");
-                ridFill();
+                GridFill();
             }  
 
 
         }
 
-        GridFill()
+       void GridFill()
         {
 
             using (MySqlConnection mysqlcon = new MySqlConnection(conString))
@@ -43,7 +43,7 @@ namespace WinFormsApp1
                 sqlData.SelectCommand.CommandType = CommandType.StoredProcedure;
                 DataTable dtplayer = new DataTable();
                 sqlData.Fill(dtplayer);
-                showplayer.DataSource = dtplayer;
+                playerview.DataSource = dtplayer;
 
                
             }
