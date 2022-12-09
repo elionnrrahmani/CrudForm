@@ -27,8 +27,26 @@ namespace WinFormsApp1
                 mySqlCmd.Parameters.AddWithValue("_Desciption", txtDescription.Text.Trim());
                 mySqlCmd.ExecuteNonQuery();
                 MessageBox.Show("Succesfully saved!");
+                ridFill();
             }  
 
+
+        }
+
+        GridFill()
+        {
+
+            using (MySqlConnection mysqlcon = new MySqlConnection(conString))
+            {
+                mysqlcon.Open();
+                MySqlDataAdapter sqlData = new MySqlDataAdapter("PlayerViewAll", mysqlcon);
+                sqlData.SelectCommand.CommandType = CommandType.StoredProcedure;
+                DataTable dtplayer = new DataTable();
+                sqlData.Fill(dtplayer);
+                showplayer.DataSource = dtplayer;
+
+               
+            }
 
         }
     }
